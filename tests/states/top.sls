@@ -1,0 +1,4 @@
+base:
+  '*':
+    - exim
+    - exim.config
