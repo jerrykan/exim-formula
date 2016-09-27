@@ -1,0 +1,41 @@
+{%- macro join_if_list(value, delimiter=' ; ') -%}
+  {%- if value is list -%}
+    {{ value|join(delimiter) }}
+  {%- else -%}
+    {{ value }}
+  {%- endif -%}
+{%- endmacro -%}
+
+# This file is managed by SaltStack
+#
+# /etc/exim4/update-exim4.conf.conf
+#
+# Edit this file and /etc/mailname by hand and execute update-exim4.conf
+# yourself or use 'dpkg-reconfigure exim4-config'
+#
+# Please note that this is _not_ a dpkg-conffile and that automatic changes
+# to this file might happen. The code handling this will honor your local
+# changes, so this is usually fine, but will break local schemes that mess
+# around with multiple versions of the file.
+#
+# update-exim4.conf uses this file to determine variable values to generate
+# exim configuration macros for the configuration file.
+#
+# Most settings found in here do have corresponding questions in the
+# Debconf configuration, but not all of them.
+#
+# This is a Debian specific file
+
+dc_eximconfig_configtype='{{ config.configtype }}'
+dc_other_hostnames='{{ join_if_list(config.other_hostnames) }}'
+dc_local_interfaces='{{ join_if_list(config.local_interfaces) }}'
+dc_readhost='{{ config.readhost }}'
+dc_relay_domains='{{ join_if_list(config.relay_domains) }}'
+dc_minimaldns='{{ config.minimaldns|lower }}'
+dc_relay_nets='{{ join_if_list(config.relay_nets) }}'
+dc_smarthost='{{ join_if_list(config.smarthost) }}'
+CFILEMODE='644'
+dc_use_split_config='{{ config.use_split_config|lower }}'
+dc_hide_mailname='{{ config.hide_mailname|lower }}'
+dc_mailname_in_oh='{{ config.mailname_in_oh|lower }}'
+dc_localdelivery='{{ config.localdelivery }}'

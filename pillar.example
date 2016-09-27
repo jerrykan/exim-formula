@@ -1,0 +1,50 @@
+exim:
+  # More detailed information about these config settings can be found in the
+  # Debian exim4 man pages:
+  #   $ man update-exim4.conf.conf
+  config:
+    # Main configuration type (one of 'internet', 'smarthost', 'satellite',
+    # 'local', or 'none'). (Default: local)
+    configtype: smarthost
+
+    # List of domains for which this machine should consider itself the final
+    # destination. (Default: FQDN of host)
+    other_hostnames:
+      - example.com
+      - example.org
+
+    # List of IP addresses the Exim daemon should listen on (all interfaces if
+    # empty). (Default: all loopback interfaces)
+    local_interfaces: []
+
+    # Rewrite outgoing mail headers with this value, if it is set, to hide the
+    # local mailname. (Default: '')
+    readhost: publichostname.example.org
+
+    # List of domains for which mail is accepted from anywhere on the Internet,
+    # but are not delivered locally (eg. secondary MX hosts).  (Default: [])
+    relay_domains: []
+
+    # Minimize DNS lookups. (Default: False)
+    minimaldns: False
+
+    # List of machines for which the host serves as smarthost. (Default: [])
+    relay_nets: []
+
+    # List of hosts to which all outgoing mail is passed to for delivery.
+    # (Default: [])
+    smarthost:
+      - mail.isp.example.com
+
+    # Controls whether update-exim4.conf uses the multiple files below
+    # 'etc/exim4/conf.d' (True) or '/etc/exim4/exim4.conf.template' (False).
+    # (Default: False)
+    use_split_config: True
+
+    # Controls whether the local mailname in the headers of outgoing mail
+    # should be hidden (Only effective for 'smarthost' and 'satellite'
+    # configtypes).  (Default: False)
+    hide_mailname: True
+
+    # The default transport for local mail delivery. (Default: mail_spool)
+    localdelivery: maildir_home
