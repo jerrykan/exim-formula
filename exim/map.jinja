@@ -1,0 +1,3 @@
+{%- import_yaml "exim/defaults.yaml" as defaults -%}
+
+{%- set exim = salt['pillar.get']('exim:lookup', defaults.exim, merge=True) -%}

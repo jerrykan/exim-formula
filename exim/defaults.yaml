@@ -1,0 +1,3 @@
+exim:
+  package: exim4-daemon-light
+  service: exim4
