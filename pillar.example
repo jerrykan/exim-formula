@@ -48,3 +48,15 @@ exim:
 
     # The default transport for local mail delivery. (Default: mail_spool)
     localdelivery: maildir_home
+
+  aliases:
+    # Alias for a single address
+    otheruser: user
+    # Alias for multiple addresses
+    groupofusers:
+      - user1
+      - user2
+    # Ensure an alias does not exist by setting the target value as something
+    # that evaluates to False
+    remove1:
+    remove2: False

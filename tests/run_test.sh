@@ -9,6 +9,11 @@ for F in $TESTS_DIR/test_*.py; do
     echo "=== RUNNING TEST: $ID ==="
 
     salt-call --state-output=terse --id test__reset state.apply
+
+    if [[ -f $TEST_DIR/pillar/${ID}_fixtures.sls ]]; then
+        salt-call --state-output=terse --id ${ID}_fixture state.apply
+    fi
+
     salt-call --state-output=terse --id $ID state.apply
 
     testinfra $F
