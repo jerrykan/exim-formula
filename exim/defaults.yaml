@@ -1,5 +1,8 @@
 exim:
   package: exim4-daemon-light
   service: exim4
+
   config_dir: /etc/exim4
   update_conf: update-exim4.conf.conf
+
+  mailname_file: /etc/mailname

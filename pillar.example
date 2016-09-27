@@ -60,3 +60,7 @@ exim:
     # that evaluates to False
     remove1:
     remove2: False
+
+  # Set the /etc/mailname used by Debian hosts. (Default: FQDN of host)
+  #   also see: https://wiki.debian.org/EtcMailName
+  mailname: otherhost.example.com
