@@ -1,9 +1,5 @@
 {%- from "exim/map.jinja" import exim with context -%}
 
-{%- macro pillar_config(name, default=None) -%}
-  {{ salt['pillar.get']('exim:config:' ~ name, default) }}
-{%- endmacro -%}
-
 {%- set config = {
   'configtype': salt['pillar.get']('exim:config:configtype', 'local'),
   'other_hostnames': salt['pillar.get'](
