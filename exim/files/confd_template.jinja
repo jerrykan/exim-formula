@@ -1,0 +1,14 @@
+# This file is managed by SaltStack
+
+### {{ confd }}/{{ file }}
+#################################
+{%- for section, opts in config|dictsort -%}
+{%- if section.startswith('_') %}
+
+{{ opts }}
+{%- else %}
+
+{{ section }}:
+  {{ opts|indent(2) }}
+{%- endif %}
+{%- endfor %}

@@ -3,6 +3,7 @@ exim:
   service: exim4
 
   config_dir: /etc/exim4
+  config_confd_dir: /etc/exim4/conf.d
   update_conf: update-exim4.conf.conf
 
   mailname_file: /etc/mailname

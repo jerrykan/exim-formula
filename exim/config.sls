@@ -1,5 +1,8 @@
 {%- from "exim/map.jinja" import exim with context -%}
 
+{%- set confds = ['acl', 'auth', 'main', 'retry', 'rewrite', 'router',
+                  'transport'] -%}
+
 {%- set config = {
   'configtype': salt['pillar.get']('exim:config:configtype', 'local'),
   'other_hostnames': salt['pillar.get'](
@@ -31,3 +34,21 @@ exim-update-conf-conf:
         config: {{ config|json }}
     - watch_in:
       - module: exim-reload
+
+{% if config.use_split_config -%}
+{%- for confd in confds %}
+{%- for file, file_config in salt['pillar.get']('exim:confd:' ~ confd, {})|dictsort %}
+exim-confd-{{ confd }}-{{ file }}:
+  file.managed:
+    - name: {{ exim.config_confd_dir }}/{{ confd }}/{{ file }}
+    - source: salt://exim/files/confd_template.jinja
+    - template: jinja
+    - context:
+        confd: {{ confd }}
+        file: {{ file }}
+        config: {{ file_config|json }}
+    - watch_in:
+      - module: exim-reload
+{% endfor %}
+{%- endfor %}
+{%- endif %}
