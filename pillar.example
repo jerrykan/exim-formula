@@ -54,14 +54,12 @@ exim:
     # conf.d subdirectory to manage
     main:
       # filename in conf.d subdirectory (ie. conf.d/main/10_local-config_localoptions)
-      10_local-config_localoptions:
-        # keys starting with an underscore are outputted as they are in the file
-        _macros: |
-          MAIN_TLS_ENABLE = true
+      10_local-config_localoptions: |
+        MAIN_TLS_ENABLE = true
 
     router:
-      880_local-config_redirect_domain:
-        redirect_domain: |
+      880_local-config_redirect_domain: |
+        redirect_domain:
           driver = redirect
           domains = mail.example.org : mail.example.com
           data = $local_part@example.com

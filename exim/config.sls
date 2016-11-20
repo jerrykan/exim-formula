@@ -46,7 +46,8 @@ exim-confd-{{ confd }}-{{ file }}:
     - context:
         confd: {{ confd }}
         file: {{ file }}
-        config: {{ file_config|json }}
+        config: |
+          {{ file_config|indent(10) }}
     - watch_in:
       - module: exim-reload
 {% endfor %}
