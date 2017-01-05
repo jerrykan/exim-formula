@@ -1,0 +1,11 @@
+# Virtual aliases for {{ domain }}
+#
+# Managed by SaltStack
+
+{%- for alias, target in aliases|dictsort %}
+{%- if target is list %}
+{{ alias }}: {{ target|join(', ') }}
+{%- else %}
+{{ alias }}: {{ target }}
+{%- endif %}
+{%- endfor %}

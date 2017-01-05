@@ -76,6 +76,18 @@ exim:
     remove1:
     remove2: False
 
+  virtual_aliases:
+    # Domain specific aliases
+    example.com:
+      user1: realuser1@example.com
+      listofusers:
+        - systemuser
+        - realuser1@example.com
+        - realuser2@example.com
+
+    example.org:
+      user1: user1@example.org
+
   # Set the /etc/mailname used by Debian hosts. (Default: FQDN of host)
   #   also see: https://wiki.debian.org/EtcMailName
   mailname: otherhost.example.com

@@ -7,3 +7,5 @@ exim:
   update_conf: update-exim4.conf.conf
 
   mailname_file: /etc/mailname
+
+  virtual_aliases_dir: /etc/exim4/virtual
