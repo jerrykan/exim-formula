@@ -33,7 +33,7 @@ exim-update-conf-conf:
     - context:
         config: {{ config|json }}
     - watch_in:
-      - module: exim-reload
+      - module: exim-restart
 
 {% if config.use_split_config -%}
 {%- for confd in confds %}
